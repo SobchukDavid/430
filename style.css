@@ -1,0 +1,29 @@
+body{
+    background-color: pink;
+}
+    
+.gif{
+    height: 400px;
+    width: 400px;
+    padding: 400px;
+    right: 200px;
+}
+
+.gif{
+    height: 400px;
+    width: 400px;
+    padding: 400px;
+    right: 200px;
+}
+
+.gif:nth-child(1){
+    transform: translate(-50%, -50%) translateY(-300px);
+}
+
+.gif:nth-child(2){
+    transform: translate(-50%, -50%) translateX(300px);
+}
+
+.gif:nth-child(3){
+    transform: translate(-50%, -50%) translateY(300px);
+}
