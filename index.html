@@ -1,21 +1,142 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dota 2</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <header class="navbar">
+        <div class="logo">DOTA PROJECT</div>
+        <nav>
+            <ul>
+                <li><a href="#">Головна</a></li>
+                <li><a href="https://www.dota2.com/heroes">Гравці</a></li>
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-btn">Регіон <span class="arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://www.dota2.com/leaderboards#europe">Європа</a></li>
+                        <li><a href="https://www.dota2.com/leaderboards#se_asia">Азія</a></li>
+                        <li><a href="https://www.dota2.com/leaderboards#americas">Америка</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="https://www.dota2.com/esports/ti14/watch/18324/65/game1vod">Турніри</a></li>
+                <li><a href="#contacts">Контакти</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>КОГО ВИ ОБЕРЕТЕ?</h1>
+            <p>Стань легендою битви древніх</p>
+            <a href="https://store.steampowered.com/app/570/Dota_2/" target="_blank" class="btn-main">ГРАТИ ЗАРАЗ</a>
+        </div>
+    </section>
     
-    <img src="img/dd.gif" alt="">
-    <img src="img/dddd.gif" alt=""> 
-    <img src="img/d.gif" alt="">
+    <section class="info-section">
+        <div class="container">
+            
+            <div class="card-large">
+                <div class="card-image">
+                    <img src="img/1578571191203.webp" alt="Player Image"> 
+                </div>
+                <div class="card-text">
+                    <h2>UNREAL EDITOR ДЛЯ ГРАВЦІВ</h2>
+                    <p>Створюйте власні та аналізуйте матчі за допомогою професійних інструментів.</p>
+                    <a href="#openModal" class="btn-yellow">ДЕТАЛЬНІШЕ</a>
+                </div>
+            </div>
 
-     <video width="80%" controls style="border: 5px solid blue;"
-        <source src="img/vvv.mp4">
-     </video>
+            <div class="cards-grid">
+                
+                <div class="card-small">
+                    <img src="img/e5fc6c8aa535ccefee0e81e04bb7c45932.jpeg" alt="Card 1"> 
+                    <div class="card-info">
+                        <h3>ТВОРЧИЙ РЕЖИМ</h3>
+                        <p>Спробуйте нові збірки героїв у тренувальних сесіях.</p>
+                        <a href="https://dota2protracker.com/" class="link-btn">ПЕРЕЙТИ →</a>
+                    </div>
+                </div>
 
+                <div class="card-small">
+                    <img src="img/image.png" alt="Card 2"> 
+                    <div class="card-info">
+                        <h3>ПРОТИСТОЯННЯ</h3>
+                        <p>Рейтингові матчі та статистика найкращих гравців сезону.</p>
+                        <a href="https://www.dota2.com/leaderboards" class="link-btn">ПЕРЕЙТИ →</a>
+                    </div>
+                </div>
 
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacts">
+        <p>&copy; 2026 Dota 2 Stats Project. Всі права захищені.</p>
+        <div class="socials">
+            <a href="https://discord.com/channels/315510884334305280/@home" target="_blank">Discord</a> | 
+            <a href="https://www.youtube.com/channel/UCjkem1Rik-q4xKeETu9geUw/home" target="_blank">YouTube</a> | 
+            <a href="https://x.com/DOTA2" target="_blank">Twitter</a>
+        </div>
+    </footer>
+
+    <div id="openModal" class="modal-css">
+        <div class="modal-css-content">
+            <a href="#" class="close-css-btn">&times;</a>
+            <h2>Ласкаво просимо до Unreal Editor!</h2>
+            <p>Тут ти можеш дізнатися більше про розробку кастомних карт, аналітику матчів та професійні інструменти для Dota Project.</p>
+        </div>
+    </div>
+
+    <script>
+        // === 1. УПОВІЛЬНЕННЯ ФОНУ (ПАРАЛАКС) ===
+        const heroSection = document.querySelector('.hero');
+        let ticking = false;
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrolled = window.scrollY;
+                    const slowScroll = scrolled * 0.5;
+                    heroSection.style.backgroundPositionY = `calc(50% + ${slowScroll}px)`;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // === 2. РОБОТА ВИПАДАЮЧОГО МЕНЮ (DROPDOWN) ===
+        const dropdownBtn = document.querySelector('.dropdown-btn');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+        const arrow = document.querySelector('.arrow');
+
+        // Перемикаємо меню по кліку на кнопку "Регіон"
+        dropdownBtn.addEventListener('click', (event) => {
+            event.preventDefault(); // Запобігаємо переходу по лінку
+            dropdownMenu.classList.toggle('show');
+            
+            // Додаткова фішка: повертаємо стрілочку при відкритті
+            if (dropdownMenu.classList.contains('show')) {
+                arrow.style.transform = 'rotate(180deg)';
+            } else {
+                arrow.style.transform = 'rotate(0deg)';
+            }
+        });
+
+        // Закриваємо меню, якщо користувач клікнув у будь-якому іншому місці сайту
+        window.addEventListener('click', (event) => {
+            if (!event.target.matches('.dropdown-btn') && !event.target.matches('.arrow')) {
+                if (dropdownMenu.classList.contains('show')) {
+                    dropdownMenu.classList.remove('show');
+                    arrow.style.transform = 'rotate(0deg)';
+                }
+            }
+        });
+    </script>
 </body>
 </html>
